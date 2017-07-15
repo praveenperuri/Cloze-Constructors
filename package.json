@@ -1,0 +1,20 @@
+{
+  "name": "Flashcard1.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yello"
+  ],
+  "author": "Praveen",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "inquirer": "^3.2.0",
+    "search": "^1.0.0",
+    "weather-js": "^2.0.0"
+  }
+}
