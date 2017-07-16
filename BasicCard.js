@@ -7,4 +7,9 @@ var BasicCard = function (front, back){
     }
 };
 
+BasicCard.prototype.readCard = function(){
+    console.log("Front: " + this.front);
+    console.log("Back: " + this.back);
+};
+
 module.exports = BasicCard;

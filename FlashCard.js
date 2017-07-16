@@ -17,13 +17,18 @@ function logFlashCard(logText) {
 }
 
 function BasicFlashCard() {
-    var flash = new BasicCard(process.argv[3].replace('"',''), process.argv[4].replace('"',''));
+    var flash = new BasicCard(process.argv[3].replace('"', ''), process.argv[4].replace('"', ''));
+    flash.readCard();
     logFlashCard(flash);
 }
 
 function ClozeFlashCard() {
-    var flash = new ClozeCard(process.argv[3], process.argv[4]);
-    logFlashCard(flash);
+    var flash = new ClozeCard(process.argv[3].replace('"', ''), process.argv[4].replace('"', ''));
+    flash.readCard();
+    if (flash.checkCloze()) {
+        logFlashCard(flash);
+    }
+    //logFlashCard(flash);
 }
 
 var FlashCard = function () {
@@ -53,31 +58,18 @@ var FlashCard = function () {
             }
         }
     };
+
+    this.getData = function () {
+        console.log("************* FlashCards Logged **************");
+        fs.readFile("log.txt", "utf8", function (error, data) {
+            console.log(data);
+        });
+        //console.log("*********** X **************** X *************");
+    };
 };
 
 var fl = new FlashCard();
 fl.storeFlashCard();
+fl.getData();
 
-// var firstPresident = new BasicCard(
-//     "Who was the first president of the United States?", "George Washington");
 
-// // "Who was the first president of the United States?"
-// console.log(firstPresident.front); 
-
-// // "George Washington"
-// console.log(firstPresident.back); 
-
-// var firstPresidentCloze = new ClozeCard(
-//     "George Washington was the first president of the United States.", "George Washington");
-
-// // "George Washington"
-// console.log(firstPresidentCloze.cloze); 
-
-// // " ... was the first president of the United States.
-// console.log(firstPresidentCloze.partial); 
-
-// // "George Washington was the first president of the United States.
-// console.log(firstPresidentCloze.fullText);
-
-// // Should throw or log an error because "oops" doesn't appear in "This doesn't work"
-// var brokenCloze = new ClozeCard("This doesn't work", "oops");
